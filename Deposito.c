@@ -19,7 +19,7 @@ Deposito * newDeposito(char * nombre){
     return auxDepo;
 }
 
-Nodo * newNodo(int codigo, int volumen, char * destino){
+Nodo * newNodo(int prior, int codigo, int volumen, char * destino){
     Nodo * auxNodo = malloc(sizeof(Nodo));
     if(auxNodo == NULL){
         printf("Error al asignar memoria\n");
@@ -58,3 +58,46 @@ Nodo * entregar(Deposito * deposito){
         return aux;
     }
 }
+
+Nodo * entregar_prioridad_tph(Deposito * deposito, Nodo * nodo){
+    if(deposito->primero == NULL){
+        printf("Deposito vacio\n");
+        return NULL;
+    }else{
+        //while(deposito->primero != NULL) {
+            if (nodo->prior == 1) {
+                printf("Entregar nodo por prioridad\n");
+                Nodo *aux = deposito->primero;
+                deposito->primero = aux->sig;
+                aux->sig = NULL;
+                if (deposito->primero == NULL) {
+                    deposito->ultimo = NULL;
+                }
+                return aux;
+
+            } else {
+                printf("Nodo con codigo incorrecto/Nodo sin prioridad");
+
+            }
+
+
+    }
+}
+
+Nodo * entregar_xcod_tph(Deposito * deposito, Nodo * nodo, int codmanu /*(PPValor? Esta mal)*/){
+    if(deposito->primero == NULL) {
+        printf("Deposito vacio\n");
+        return NULL;
+    }else{
+        if(nodo->codigo == codmanu){
+            Nodo *aux = deposito->primero;
+            deposito->primero = aux->sig;
+            aux->sig = NULL;
+            if (deposito->primero == NULL) {
+                deposito->ultimo = NULL;
+            }
+            return aux;
+            }else
+                printf("No existen coincidencias\n");
+        }
+    }
